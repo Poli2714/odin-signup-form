@@ -5,5 +5,117 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign up to Bookty</title>
   </head>
-  <body></body>
+  <body>
+    <div class="container">
+      <div class="img-wrapper">
+        <img
+          src="./assets/bookstore.jpg"
+          alt="Floating book image in a bookstore"
+          width="700"
+        />
+      </div>
+      <div class="form-wrapper">
+        <nav class="primary-nav">
+          <div class="social-media-accounts">
+            <img
+              src="./assets/twitter.png"
+              alt="Twitter icon"
+              height="30"
+              width="30"
+            />
+            <img
+              src="./assets/instagram.png"
+              alt="Instagram icon"
+              height="30"
+              width="30"
+            />
+            <img
+              src="./assets/youtube.png"
+              alt="Youtube icon"
+              height="30"
+              width="30"
+            />
+            <img
+              src="./assets/facebook.png"
+              alt="Facebook icon"
+              height="30"
+              width="30"
+            />
+          </div>
+          <p class="sign-in">Already a member? <a href="#">Sign in</a></p>
+        </nav>
+        <main class="sign-up">
+          <header class="form-header">
+            <h1>Sign up to Bookty</h1>
+            <button class="btn sign-up-with-gg">
+              <img
+                src="./assets/google.png"
+                alt="Google icon"
+                height="25"
+                width="25"
+              />
+              Sign up with Google
+            </button>
+            <div class="sign-up-with-email">
+              <div class="line"></div>
+              <p>or sign up with email</p>
+              <div class="line"></div>
+            </div>
+          </header>
+          <form action="#" method="get" class="sign-up-form">
+            <div class="name">
+              <div class="first-name">
+                <label for="first-name"
+                  >First Name <span>(required)</span></label
+                >
+                <input type="text" id="first-name" name="first-name" />
+              </div>
+              <div class="last-name">
+                <label for="last-name">Last Name <span>(required)</span></label>
+                <input type="text" id="last-name" name="last-name" />
+              </div>
+            </div>
+            <div class="email">
+              <label for="email">Email Address <span>(required)</span></label>
+              <input type="email" id="email" name="email" />
+            </div>
+            <div class="passwords">
+              <div class="pwd">
+                <label for="password">Password <span>(required)</span></label>
+                <input type="password" id="password" name="password" />
+              </div>
+              <div class="pwd-confirm">
+                <label for="password-confirm"
+                  >Confirm Password <span>(required)</span></label
+                >
+                <input
+                  type="password"
+                  id="password-confirm"
+                  name="password-confirm"
+                />
+              </div>
+            </div>
+            <div class="phone-number">
+              <label for="phone-number"
+                >Phone Number <span>(optional)</span></label
+              >
+              <input type="tel" id="phone-number" name="phone-number" />
+            </div>
+            <div class="agree-to-terms">
+              <input
+                type="checkbox"
+                id="agree-to-terms"
+                name="agree-to-terms"
+              />
+              <label for="agree-to-terms"
+                >I agree to the <a href="#">terms of use</a></label
+              >
+            </div>
+            <button class="btn create-account">Create Account</button>
+          </form>
+        </main>
+        <div class="attribution"></div>
+      </div>
+    </div>
+  </body>
 </html>
