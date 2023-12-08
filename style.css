@@ -1,0 +1,117 @@
+@font-face {
+  font-family: 'Literata';
+  src: local('Literata'),
+    url('./Fonts/Literata.woff2') format('woff2') tech(variations);
+  font-weight: 200 900;
+  font-display: swap;
+}
+
+:root {
+  /* COLORS */
+  --clr-primary-1: hsl(40, 100%, 97%);
+  --clr-primary-2: hsl(70, 5%, 22%);
+  --clr-secondary: hsla(70, 5%, 22%, 0.5);
+  --clr-bg-input: hsl(60, 10%, 92%);
+  --clr-bg-input-focused: hsla(60, 10%, 92%, 0.5);
+  --clr-correct-input: hsl(158, 100%, 33%);
+  --clr-wrong-input: hsl(350, 74%, 45%);
+  --clr-link: hsl(240, 100%, 50%);
+  --clr-link-active: hsl(266, 100%, 50%);
+  --clr-stroke: hsl(229, 28%, 88%);
+
+  /* PADDING */
+  --pd-s: 1rem;
+  --pd-m: 1.5rem;
+  --pd-l: 2.25rem;
+  --pd-xl: 2.5rem;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: 'Literata', serif;
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--clr-primary-1);
+  color: var(--clr-primary-2);
+  height: 100vh;
+}
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+a {
+  --font-weight: 600;
+  --font-opsz: 50;
+
+  font-variation-settings: 'opsz' var(--font-opsz);
+  font-weight: var(--font-weight);
+  text-decoration: none;
+  transition: font-variation-settings 300ms ease, font-weight 300ms ease;
+
+  &:link {
+    color: var(--clr-link);
+  }
+
+  &:active,
+  &:visited {
+    color: var(--clr-link-active);
+  }
+
+  &:hover {
+    --font-weight: 800;
+    --font-opsz: 70;
+    text-decoration-line: underline;
+  }
+}
+
+.container {
+  display: flex;
+  height: 100%;
+}
+
+.img-wrapper {
+  overflow: hidden;
+  width: 50%;
+
+  & img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: var(--pd-xl) var(--pd-l) 0;
+  width: 50%;
+}
+
+.primary-nav {
+  display: flex;
+
+  .social-media-accounts img {
+    cursor: pointer;
+
+    &:not(:last-child) {
+      margin-right: 0.5rem;
+    }
+  }
+
+  .sign-in {
+    margin-left: auto;
+  }
+}
+
+.sign-up {
+  align-self: center;
+}
