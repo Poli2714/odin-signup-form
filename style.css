@@ -11,19 +11,42 @@
   --clr-primary-1: hsl(40, 100%, 97%);
   --clr-primary-2: hsl(70, 5%, 22%);
   --clr-secondary: hsla(70, 5%, 22%, 0.5);
-  --clr-bg-input: hsl(60, 10%, 92%);
-  --clr-bg-input-focused: hsla(60, 10%, 92%, 0.5);
+  --clr-bg-input: hsla(60, 10%, 92%, 0.5);
+  --clr-bg-input-focused: hsla(60, 10%, 92%, 0.25);
   --clr-correct-input: hsl(158, 100%, 33%);
   --clr-wrong-input: hsl(350, 74%, 45%);
   --clr-link: hsl(240, 100%, 50%);
   --clr-link-active: hsl(266, 100%, 50%);
   --clr-stroke: hsl(229, 28%, 88%);
+  --clr-shadow-1: hsla(229, 28%, 88%, 0.3);
+  --clr-shadow-2: hsla(70, 5%, 22%, 0.3);
 
   /* PADDING */
   --pd-s: 1rem;
   --pd-m: 1.5rem;
   --pd-l: 2.25rem;
   --pd-xl: 2.5rem;
+
+  /* MARGIN */
+  --margin-xs: 0.5rem; /* 8px */
+  --margin-m: 1.5rem; /* 24px */
+  --margin-l: 2.25rem; /* 36px */
+  --margin-xl: 2.5rem; /* 40px */
+  --margin-xxl: 3rem; /* 48px */
+
+  /* GAP */
+  --gap-s: 1rem;
+  --gap-m: 1.5rem;
+  --gap-l: calc(1rem + 1rem * 1.875);
+
+  /* FONT SIZES */
+  --font-xxs: calc(1rem - 1rem * 0.375); /* 10px */
+  --font-xs: calc(1rem - 1rem * 0.25); /* 12px */
+  --font-s: calc(1rem - 1rem * 0.125); /* 14px */
+  --font-l: 2.5rem;
+
+  /* BORDER RADIUS */
+  --border-radius: 5px;
 }
 
 * {
@@ -43,9 +66,27 @@ body {
   height: 100vh;
 }
 
-button {
+button,
+input:not([type='checkbox']) {
+  border-radius: var(--border-radius);
+  box-sizing: border-box;
+  display: block;
   font-family: inherit;
-  font-size: inherit;
+  font-size: 100%;
+  /* height: clamp(45px, 3.3vw, 50px); */
+  padding: min(calc(1rem * 0.8125), 2vw);
+  width: 100%;
+}
+
+input {
+  background-color: var(--clr-bg-input);
+  border: none;
+
+  &:is([type='checkbox']) {
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 100%;
+  }
 }
 
 a {
@@ -70,6 +111,17 @@ a {
     --font-weight: 800;
     --font-opsz: 70;
     text-decoration-line: underline;
+  }
+}
+
+button {
+  appearance: none;
+  border: none;
+  transition: transform 300ms linear;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.04);
   }
 }
 
@@ -100,10 +152,15 @@ a {
   display: flex;
 
   .social-media-accounts img {
-    cursor: pointer;
+    transition: transform 300ms ease;
+
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.1);
+    }
 
     &:not(:last-child) {
-      margin-right: 0.5rem;
+      margin-right: var(--margin-xs);
     }
   }
 
@@ -112,6 +169,32 @@ a {
   }
 }
 
-.sign-up {
-  align-self: center;
+.sign-up-container {
+  display: flex;
+  flex-direction: column;
+
+  margin: auto;
+  width: clamp(300px, 26.45vw, 450px);
+
+  & header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-m);
+    text-align: center;
+  }
+
+  .form-title {
+    font-size: var(--font-l);
+  }
+
+  .sign-up-with-gg {
+    background-color: inherit;
+    border: 1px solid var(--clr-stroke);
+    box-shadow: 0 10px 30px var(--clr-shadow-1);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--gap-s);
+  }
 }

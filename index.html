@@ -45,7 +45,7 @@
           </div>
           <p class="sign-in">Already a member? <a href="#">Sign in</a></p>
         </nav>
-        <main class="sign-up">
+        <main class="sign-up-container">
           <header>
             <h1 class="form-title">Sign up to Bookty</h1>
             <button class="btn sign-up-with-gg">
@@ -66,28 +66,34 @@
           <form action="#" method="get" class="sign-up-form">
             <div class="name">
               <div class="first-name">
-                <label for="first-name"
+                <label class="input-label" for="first-name"
                   >First Name <span>(required)</span></label
                 >
                 <input type="text" id="first-name" name="first-name" />
               </div>
               <div class="last-name">
-                <label for="last-name">Last Name <span>(required)</span></label>
+                <label class="input-label" for="last-name"
+                  >Last Name <span>(required)</span></label
+                >
                 <input type="text" id="last-name" name="last-name" />
               </div>
             </div>
             <div class="email">
-              <label for="email">Email Address <span>(required)</span></label>
+              <label class="input-label" for="email"
+                >Email Address <span>(required)</span></label
+              >
               <input type="email" id="email" name="email" />
             </div>
-            <div class="passwords">
+            <div class="password">
               <div class="pwd">
-                <label for="password">Password <span>(required)</span></label>
+                <label class="input-label" for="password"
+                  >Password <span>(required)</span></label
+                >
                 <input type="password" id="password" name="password" />
               </div>
               <div class="pwd-confirm">
-                <label for="password-confirm"
-                  >Confirm Password <span>(required)</span></label
+                <label class="input-label" for="password-confirm"
+                  >Confirm Password</label
                 >
                 <input
                   type="password"
@@ -97,7 +103,7 @@
               </div>
             </div>
             <div class="phone-number">
-              <label for="phone-number"
+              <label class="input-label" for="phone-number"
                 >Phone Number <span>(optional)</span></label
               >
               <input type="tel" id="phone-number" name="phone-number" />
@@ -108,11 +114,13 @@
                 id="agree-to-terms"
                 name="agree-to-terms"
               />
-              <label for="agree-to-terms"
+              <label class="input-label" for="agree-to-terms"
                 >I agree to the <a href="#">terms of use</a></label
               >
             </div>
-            <button class="btn create-account">Create Account</button>
+            <button type="submit" class="btn create-account">
+              Create Account
+            </button>
           </form>
         </main>
         <div class="attribution"></div>
