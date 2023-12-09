@@ -29,6 +29,7 @@
 
   /* MARGIN */
   --margin-xs: 0.5rem; /* 8px */
+  --margin-s: 0.75rem; /* 12px */
   --margin-m: 1.5rem; /* 24px */
   --margin-l: 2.25rem; /* 36px */
   --margin-xl: 2.5rem; /* 40px */
@@ -45,8 +46,9 @@
   --font-s: calc(1rem - 1rem * 0.125); /* 14px */
   --font-l: 2.5rem;
 
-  /* BORDER RADIUS */
+  /* OTHER SIZES */
   --border-radius: 5px;
+  --checkbox-size: 1.25rem; /* 20 */
 }
 
 * {
@@ -221,10 +223,6 @@ button {
     position: relative;
   }
 
-  .agree-to-terms {
-    margin-bottom: var(--margin-m);
-  }
-
   .create-account {
     background-color: var(--clr-primary-2);
     box-shadow: 0 10px 30px var(--clr-shadow-2);
@@ -246,7 +244,7 @@ button {
   }
 }
 
-input:not([type='checkbox']) {
+.input {
   transition: outline 200ms ease;
 
   &:focus,
@@ -269,5 +267,43 @@ input:not([type='checkbox']) {
 
   & span {
     font-size: var(--font-xxs);
+  }
+}
+
+/* CHECKBOX SECTION */
+
+.agree-to-terms {
+  display: flex;
+  align-items: center;
+
+  height: 24px;
+  margin-bottom: var(--margin-m);
+  position: relative;
+
+  & div {
+    background-color: var(--clr-primary-2);
+    height: calc(var(--checkbox-size) / 2);
+    position: absolute;
+    top: 7px;
+    left: calc(var(--checkbox-size) / 4);
+    transform: scale(0);
+    transition: transform 250ms cubic-bezier(0.53, -0.56, 0.15, 2.5);
+    width: calc(var(--checkbox-size) / 2);
+    z-index: -1;
+  }
+
+  & input {
+    appearance: none;
+    height: var(--checkbox-size);
+    width: var(--checkbox-size);
+    margin-right: var(--margin-s);
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:checked + div {
+      transform: scale(1);
+    }
   }
 }
