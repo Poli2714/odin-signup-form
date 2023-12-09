@@ -73,8 +73,7 @@ input:not([type='checkbox']) {
   display: block;
   font-family: inherit;
   font-size: 100%;
-  /* height: clamp(45px, 3.3vw, 50px); */
-  padding: min(calc(1rem * 0.8125), 2vw);
+  padding: min(calc(1rem * 0.8125), 2vw) calc(min(calc(1rem * 0.8125), 2vw) * 2);
   width: 100%;
 }
 
@@ -218,12 +217,7 @@ button {
     gap: 1rem;
   }
 
-  .first-name,
-  .last-name,
-  .email,
-  .pwd,
-  .pwd-confirm,
-  .phone-number {
+  .input-label-div {
     position: relative;
   }
 
@@ -238,12 +232,13 @@ button {
   }
 }
 
-.input-label:not(:last-child) {
+.input-label {
   color: var(--clr-primary-2);
   font-size: var(--font-s);
   position: absolute;
-  left: min(calc(1rem * 0.8125), 2vw);
+  left: calc(min(calc(1rem * 0.8125), 2vw) * 2);
   top: min(calc(1rem * 0.8125), 2vw);
+  transition: all 300ms ease;
   z-index: -1;
 
   & span {
@@ -254,9 +249,25 @@ button {
 input:not([type='checkbox']) {
   transition: outline 200ms ease;
 
-  &:active,
-  &:focus {
+  &:focus,
+  &:active {
     background-color: var(--clr-bg-input-focused);
     outline: solid 1.5px var(--clr-secondary);
+  }
+
+  &:not([value='']) {
+    background-color: var(--clr-bg-input-focused);
+    border: 1px solid var(--clr-stroke);
+    color: hsla(70, 5%, 22%, 0.75);
+  }
+}
+
+.active {
+  color: var(--clr-secondary);
+  font-size: var(--font-xs);
+  transform: translate(max(calc(-1rem * 0.8125), -2vw), -2.5rem);
+
+  & span {
+    font-size: var(--font-xxs);
   }
 }

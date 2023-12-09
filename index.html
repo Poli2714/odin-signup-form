@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign up to Bookty</title>
     <link rel="stylesheet" type="text/css" href="./style.css" />
+    <script src="./script.js" defer></script>
   </head>
   <body>
     <div class="container">
@@ -65,48 +66,69 @@
           </header>
           <form action="#" method="get" class="sign-up-form">
             <div class="name">
-              <div class="first-name">
+              <div class="first-name input-label-div">
                 <label class="input-label" for="first-name"
                   >First Name <span>(required)</span></label
                 >
-                <input type="text" id="first-name" name="first-name" />
+                <input
+                  class="input"
+                  type="text"
+                  id="first-name"
+                  name="first-name"
+                />
               </div>
-              <div class="last-name">
+              <div class="last-name input-label-div">
                 <label class="input-label" for="last-name"
                   >Last Name <span>(required)</span></label
                 >
-                <input type="text" id="last-name" name="last-name" />
+                <input
+                  class="input"
+                  type="text"
+                  id="last-name"
+                  name="last-name"
+                />
               </div>
             </div>
-            <div class="email">
+            <div class="email input-label-div">
               <label class="input-label" for="email"
                 >Email Address <span>(required)</span></label
               >
-              <input type="email" id="email" name="email" />
+              <input class="input" type="email" id="email" name="email" />
             </div>
             <div class="password">
-              <div class="pwd">
+              <div class="pwd input-label-div">
                 <label class="input-label" for="password"
                   >Password <span>(required)</span></label
                 >
-                <input type="password" id="password" name="password" />
+                <input
+                  class="input"
+                  type="password"
+                  id="password"
+                  name="password"
+                />
               </div>
-              <div class="pwd-confirm">
+              <div class="pwd-confirm input-label-div">
                 <label class="input-label" for="password-confirm"
                   >Confirm Password</label
                 >
                 <input
+                  class="input"
                   type="password"
                   id="password-confirm"
                   name="password-confirm"
                 />
               </div>
             </div>
-            <div class="phone-number">
+            <div class="phone-number input-label-div">
               <label class="input-label" for="phone-number"
                 >Phone Number <span>(optional)</span></label
               >
-              <input type="tel" id="phone-number" name="phone-number" />
+              <input
+                class="input"
+                type="tel"
+                id="phone-number"
+                name="phone-number"
+              />
             </div>
             <div class="agree-to-terms">
               <input
@@ -114,7 +136,7 @@
                 id="agree-to-terms"
                 name="agree-to-terms"
               />
-              <label class="input-label" for="agree-to-terms"
+              <label for="agree-to-terms"
                 >I agree to the <a href="#">terms of use</a></label
               >
             </div>
