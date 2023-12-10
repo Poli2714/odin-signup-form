@@ -22,6 +22,8 @@
   --clr-shadow-2: hsla(70, 5%, 22%, 0.3);
 
   /* PADDING */
+  --padding-top-bottom: 0.8125rem; /* 13px */
+  --padding-left-right: 1.625rem; /* 26px */
   --pd-s: 1rem;
   --pd-m: 1.5rem;
   --pd-l: 2.25rem;
@@ -36,15 +38,16 @@
   --margin-xxl: 3rem; /* 48px */
 
   /* GAP */
-  --gap-s: 1rem;
-  --gap-m: 1.5rem;
-  --gap-l: calc(1rem + 1rem * 1.875);
+  --gap-s: 1rem; /* 16 px */
+  --gap-m: 1.5rem; /* 24px */
+  --gap-l: calc(1rem + 1rem * 1.875); /* 46px */
 
   /* FONT SIZES */
   --font-xxs: calc(1rem - 1rem * 0.375); /* 10px */
   --font-xs: calc(1rem - 1rem * 0.25); /* 12px */
   --font-s: calc(1rem - 1rem * 0.125); /* 14px */
-  --font-l: 2.5rem;
+  --font-l: 2.5rem; /* 40px */
+  --font-xl: 3rem; /* 50px */
 
   /* OTHER SIZES */
   --border-radius: 5px;
@@ -75,7 +78,7 @@ input:not([type='checkbox']) {
   display: block;
   font-family: inherit;
   font-size: 100%;
-  padding: min(calc(1rem * 0.8125), 2vw) calc(min(calc(1rem * 0.8125), 2vw) * 2);
+  padding: var(--padding-top-bottom) var(--padding-left-right);
   width: 100%;
 }
 
@@ -170,12 +173,12 @@ button {
   }
 }
 
+/* FORM HEADER */
 .sign-up-container {
   display: flex;
   flex-direction: column;
 
   margin: auto;
-  /* width: clamp(300px, 26.45vw, 450px); */
   width: clamp(400px, 40vw, 500px);
 
   & header {
@@ -186,7 +189,7 @@ button {
   }
 
   .form-title {
-    font-size: var(--font-l);
+    font-size: clamp(var(--font-l), 3.5vw, var(--font-xl));
   }
 
   .sign-up-with-gg {
@@ -201,23 +204,21 @@ button {
   }
 }
 
+/* ACTUAL FORM */
 .sign-up-form {
   display: flex;
   flex-direction: column;
   margin-top: var(--margin-xl);
 
-  & > div:nth-child(-n + 3) {
+  & > div:nth-child(-n + 4) {
     margin-bottom: var(--margin-xxl);
-  }
-
-  .phone-number {
-    margin-bottom: var(--margin-l);
   }
 
   .name,
   .password {
     display: flex;
-    gap: 1rem;
+    justify-content: space-around;
+    gap: var(--gap-s);
   }
 
   .input-label-div {
@@ -235,8 +236,8 @@ button {
   color: var(--clr-primary-2);
   font-size: var(--font-s);
   position: absolute;
-  left: calc(min(calc(1rem * 0.8125), 2vw) * 2);
-  top: min(calc(1rem * 0.8125), 2vw);
+  left: var(--padding-left-right);
+  top: var(--padding-top-bottom);
   transition: all 300ms ease;
   z-index: -1;
 
@@ -256,8 +257,11 @@ button {
 
   &:not([value='']) {
     background-color: var(--clr-bg-input-focused);
-    border: 1px solid var(--clr-stroke);
     color: hsla(70, 5%, 22%, 0.75);
+  }
+
+  &:not([value='']):not(:focus) {
+    outline: 1px solid var(--clr-stroke);
   }
 }
 
@@ -282,25 +286,24 @@ button {
 
   & div {
     background-color: var(--clr-primary-2);
+    border-radius: calc(var(--checkbox-size) / 2 / 10);
     height: calc(var(--checkbox-size) / 2);
     position: absolute;
     top: 7px;
     left: calc(var(--checkbox-size) / 4);
     transform: scale(0);
-    transition: transform 250ms cubic-bezier(0.53, -0.56, 0.15, 2.5);
+    transition: transform 200ms cubic-bezier(0.53, -0.56, 0.15, 2.5);
     width: calc(var(--checkbox-size) / 2);
     z-index: -1;
   }
 
   & input {
     appearance: none;
+    border: 1px solid var(--clr-stroke);
+    border-radius: calc(var(--checkbox-size) / 10);
     height: var(--checkbox-size);
     width: var(--checkbox-size);
     margin-right: var(--margin-s);
-
-    &:hover {
-      cursor: pointer;
-    }
 
     &:checked + div {
       transform: scale(1);
@@ -328,6 +331,54 @@ button {
 
     &.phone-number div:last-of-type::after {
       content: 'optional';
+    }
+  }
+}
+
+@media only screen and (max-width: 943px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .img-wrapper {
+    min-height: 40vh;
+    width: 100%;
+  }
+
+  .form-wrapper {
+    width: 100%;
+  }
+
+  .sign-up-container {
+    margin-top: var(--margin-xxl);
+    width: clamp(400px, 55vw, 550px);
+
+    & header {
+      gap: 0;
+      margin-bottom: clamp(2.25rem, 5vw, 3rem);
+
+      .form-title {
+        font-size: clamp(var(--font-l), 5.5vw, var(--font-xl));
+        margin-bottom: clamp(1.5rem, 3.8vw, 2.25rem);
+      }
+
+      .sign-up-with-gg {
+        margin-bottom: clamp(2.25rem, 5vw, 3rem);
+      }
+    }
+  }
+
+  .sign-up-form {
+    margin-top: var(--margin-xl);
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .sign-up-form {
+    .name,
+    .password {
+      flex-direction: column;
+      gap: var(--margin-xxl);
     }
   }
 }
