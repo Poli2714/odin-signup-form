@@ -36,6 +36,7 @@
   --margin-l: 2.25rem; /* 36px */
   --margin-xl: 2.5rem; /* 40px */
   --margin-xxl: 3rem; /* 48px */
+  --margin-xxxl: 3.75rem; /* 60px */
 
   /* GAP */
   --gap-s: 1rem; /* 16 px */
@@ -184,18 +185,20 @@ button {
   & header {
     display: flex;
     flex-direction: column;
-    gap: var(--gap-m);
+    margin-bottom: clamp(var(--margin-xl), 3.4vw, var(--margin-xxxl));
     text-align: center;
   }
 
   .form-title {
     font-size: clamp(var(--font-l), 3.5vw, var(--font-xl));
+    margin-bottom: clamp(var(--margin-m), 1.8vw, 2rem);
   }
 
   .sign-up-with-gg {
     background-color: inherit;
     border: 1px solid var(--clr-stroke);
     box-shadow: 0 10px 30px var(--clr-shadow-1);
+    margin-bottom: clamp(var(--margin-xl), 3.4vw, var(--margin-xxxl));
 
     display: flex;
     align-items: center;
@@ -208,7 +211,6 @@ button {
 .sign-up-form {
   display: flex;
   flex-direction: column;
-  margin-top: var(--margin-xl);
 
   & > div:nth-child(-n + 4) {
     margin-bottom: var(--margin-xxl);
@@ -312,6 +314,12 @@ button {
 }
 
 @media only screen and (max-width: 1200px) {
+  .sign-up-container {
+    & header {
+      margin-bottom: clamp(var(--margin-xl), 5.3vw, 4rem);
+    }
+  }
+
   .input-label span {
     display: none;
   }
@@ -355,15 +363,15 @@ button {
 
     & header {
       gap: 0;
-      margin-bottom: clamp(2.25rem, 5vw, 3rem);
+      margin-bottom: clamp(var(--margin-l), 5vw, var(--margin-xxl));
 
       .form-title {
         font-size: clamp(var(--font-l), 5.5vw, var(--font-xl));
-        margin-bottom: clamp(1.5rem, 3.8vw, 2.25rem);
+        margin-bottom: clamp(var(--margin-m), 3.8vw, var(--margin-l));
       }
 
       .sign-up-with-gg {
-        margin-bottom: clamp(2.25rem, 5vw, 3rem);
+        margin-bottom: clamp(var(--margin-l), 5vw, var(--margin-xxl));
       }
     }
   }
