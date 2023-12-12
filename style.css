@@ -117,6 +117,11 @@ a {
     --font-opsz: 70;
     text-decoration-line: underline;
   }
+
+  &:focus {
+    outline-color: var(--clr-primary-2);
+    outline-offset: 2px;
+  }
 }
 
 button {
@@ -203,6 +208,10 @@ button {
       align-items: center;
       justify-content: center;
       gap: var(--gap-s);
+
+      &:focus {
+        outline-color: var(--clr-secondary);
+      }
     }
 
     .sign-up-with-email {
@@ -217,7 +226,7 @@ button {
       .line {
         height: 0;
         border: 0.5px solid var(--clr-secondary);
-        width: calc((clamp(400px, 40vw, 500px) / 2) - 90px);
+        width: calc((clamp(400px, 40vw, 500px) / 2) - 5.625rem);
       }
     }
   }
@@ -228,8 +237,12 @@ button {
   display: flex;
   flex-direction: column;
 
-  & > div:nth-child(-n + 4) {
+  & > div:nth-child(-n + 3) {
     margin-bottom: var(--margin-xxl);
+  }
+
+  & > div:nth-child(n + 4) {
+    margin-bottom: var(--margin-l);
   }
 
   .name,
@@ -247,6 +260,10 @@ button {
     background-color: var(--clr-primary-2);
     box-shadow: 0 10px 30px var(--clr-shadow-2);
     color: var(--clr-primary-1);
+
+    &:focus {
+      outline-color: blue;
+    }
   }
 }
 
@@ -339,7 +356,7 @@ button {
   align-items: center;
 
   height: 24px;
-  margin-bottom: var(--margin-m);
+  /* margin-bottom: var(--margin-m); */
   position: relative;
 
   & div {
@@ -365,6 +382,10 @@ button {
 
     &:checked + div {
       transform: scale(1);
+    }
+
+    &:focus {
+      outline-color: var(--clr-secondary);
     }
   }
 }
@@ -408,12 +429,11 @@ button {
   }
 
   .sign-up-container {
-    margin-top: var(--margin-xxl);
+    margin: 8rem auto;
     width: clamp(400px, 55vw, 550px);
 
     & header {
-      gap: 0;
-      margin-bottom: clamp(var(--margin-l), 5vw, var(--margin-xxl));
+      margin-bottom: clamp(var(--margin-l), 6vw, var(--margin-xxxl));
 
       .form-title {
         font-size: clamp(var(--font-l), 5.5vw, var(--font-xl));
@@ -421,13 +441,13 @@ button {
       }
 
       .sign-up-with-gg {
-        margin-bottom: clamp(var(--margin-l), 5vw, var(--margin-xxl));
+        margin-bottom: clamp(var(--margin-s), 3.4vw, var(--margin-l));
+      }
+
+      .sign-up-with-email .line {
+        width: calc(clamp(400px, 55vw, 550px) / 2 - 5.625rem);
       }
     }
-  }
-
-  .sign-up-form {
-    margin-top: var(--margin-xl);
   }
 }
 

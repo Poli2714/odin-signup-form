@@ -35,9 +35,6 @@ form.addEventListener('focusin', function (e) {
   inputLabels.forEach(label => {
     if (target.id === label.attributes.for.value) label.classList.add('active');
   });
-
-  // target.classList.remove('isNotValid');
-  // target.classList.remove('isValid');
 });
 
 form.addEventListener('focusout', function (e) {
