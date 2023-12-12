@@ -185,25 +185,41 @@ button {
   & header {
     display: flex;
     flex-direction: column;
-    margin-bottom: clamp(var(--margin-xl), 3.4vw, var(--margin-xxxl));
+    margin-bottom: clamp(var(--margin-l), 2.27vw, var(--margin-xl));
     text-align: center;
-  }
 
-  .form-title {
-    font-size: clamp(var(--font-l), 3.5vw, var(--font-xl));
-    margin-bottom: clamp(var(--margin-m), 1.8vw, 2rem);
-  }
+    .form-title {
+      font-size: clamp(var(--font-l), 3.5vw, var(--font-xl));
+      margin-bottom: clamp(var(--margin-m), 1.8vw, 2rem);
+    }
 
-  .sign-up-with-gg {
-    background-color: inherit;
-    border: 1px solid var(--clr-stroke);
-    box-shadow: 0 10px 30px var(--clr-shadow-1);
-    margin-bottom: clamp(var(--margin-xl), 3.4vw, var(--margin-xxxl));
+    .sign-up-with-gg {
+      background-color: inherit;
+      border: 1px solid var(--clr-stroke);
+      box-shadow: 0 10px 30px var(--clr-shadow-1);
+      margin-bottom: clamp(var(--margin-l), 2.27vw, var(--margin-xl));
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--gap-s);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--gap-s);
+    }
+
+    .sign-up-with-email {
+      color: var(--clr-secondary);
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: var(--padding-top-bottom) 0;
+
+      .line {
+        height: 0;
+        border: 0.5px solid var(--clr-secondary);
+        width: calc((clamp(400px, 40vw, 500px) / 2) - 90px);
+      }
+    }
   }
 }
 
@@ -249,7 +265,19 @@ button {
 }
 
 .input {
+  color: hsla(70, 5%, 22%, 0.75);
   transition: outline 200ms ease;
+
+  & + div::before {
+    border-radius: 5px;
+    content: '';
+    display: none;
+    height: 0.625rem;
+    width: 0.625rem;
+    position: absolute;
+    right: 0.625rem;
+    bottom: 1.25rem;
+  }
 
   &:focus,
   &:active {
@@ -257,13 +285,41 @@ button {
     outline: solid 1.5px var(--clr-secondary);
   }
 
-  &:not([value='']) {
-    background-color: var(--clr-bg-input-focused);
-    color: hsla(70, 5%, 22%, 0.75);
-  }
+  /* NOT FOCUSED */
+  &:not(:focus, :active) {
+    /* AND NOT EMPTY */
+    &:not([value='']) {
+      background-color: var(--clr-bg-input-focused);
 
-  &:not([value='']):not(:focus) {
-    outline: 1px solid var(--clr-stroke);
+      /* AND INVALID */
+      &:invalid,
+      &#password-confirm.isNotValid {
+        outline: 1px solid var(--clr-wrong-input);
+
+        & + div::before {
+          background-color: var(--clr-wrong-input);
+          display: block;
+        }
+      }
+
+      /* AND VALID */
+      &:valid {
+        &:not([type='tel'], [name='password-confirm']),
+        &#password-confirm.isValid {
+          outline: 1px solid var(--clr-correct-input);
+
+          & + div::before {
+            display: block;
+            background-color: var(--clr-correct-input);
+          }
+        }
+
+        &[type='tel'],
+        &[name='password-confirm'] {
+          outline: 1px solid var(--clr-stroke);
+        }
+      }
+    }
   }
 }
 
@@ -314,12 +370,6 @@ button {
 }
 
 @media only screen and (max-width: 1200px) {
-  .sign-up-container {
-    & header {
-      margin-bottom: clamp(var(--margin-xl), 5.3vw, 4rem);
-    }
-  }
-
   .input-label span {
     display: none;
   }

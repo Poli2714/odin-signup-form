@@ -75,6 +75,7 @@
                   type="text"
                   id="first-name"
                   name="first-name"
+                  required
                 />
                 <div></div>
                 <div></div>
@@ -88,6 +89,7 @@
                   type="text"
                   id="last-name"
                   name="last-name"
+                  required
                 />
                 <div></div>
                 <div></div>
@@ -97,7 +99,14 @@
               <label class="input-label" for="email"
                 >Email Address <span>(required)</span></label
               >
-              <input class="input" type="email" id="email" name="email" />
+              <input
+                class="input"
+                type="email"
+                id="email"
+                name="email"
+                required
+                pattern="^[a-zA-Z]+((\-_\.)[a-zA-Z0-9]+)*[a-zA-Z]*@[a-zA-Z0-9]+(-[a-zA-Z0-9]+)*[a-zA-Z0-9]+\.[a-zA-Z]{2,}(\.[a-zA-Z]{2,3})?$"
+              />
               <div></div>
               <div></div>
             </div>
@@ -111,6 +120,8 @@
                   type="password"
                   id="password"
                   name="password"
+                  required
+                  pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,15}$"
                 />
                 <div></div>
                 <div></div>
@@ -124,6 +135,7 @@
                   type="password"
                   id="password-confirm"
                   name="password-confirm"
+                  required
                 />
                 <div></div>
                 <div></div>
@@ -138,6 +150,7 @@
                 type="tel"
                 id="phone-number"
                 name="phone-number"
+                pattern="\d{5}"
               />
               <div></div>
               <div></div>
@@ -147,6 +160,7 @@
                 type="checkbox"
                 id="agree-to-terms"
                 name="agree-to-terms"
+                required
               />
               <div></div>
               <label for="agree-to-terms"
