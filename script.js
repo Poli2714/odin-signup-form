@@ -5,15 +5,18 @@ const inputLabels = document.querySelectorAll('.input-label');
 const inputs = document.querySelectorAll('.input');
 const password = document.querySelector('#password');
 const passwordConfirm = document.querySelector('#password-confirm');
+const phoneNumber = document.querySelector('#phone-number');
+const passwordStatus = document.querySelector('.password-status');
+const phoneLabel = document.querySelector('.number');
 
 const confirmPassword = function (pwd, confirmPwd) {
-  confirmPwd.classList.remove('isNotValid');
+  confirmPwd.classList.remove('isInvalid');
   confirmPwd.classList.remove('isValid');
 
   if (!pwd.validity.valid) return;
 
   confirmPwd.classList.add(
-    `${pwd.value === confirmPwd.value ? 'isValid' : 'isNotValid'}`
+    `${pwd.value === confirmPwd.value ? 'isValid' : 'isInvalid'}`
   );
 };
 

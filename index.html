@@ -107,7 +107,7 @@
                 required
                 pattern="^[a-zA-Z]+((\-_\.)[a-zA-Z0-9]+)*[a-zA-Z]*@[a-zA-Z0-9]+(-[a-zA-Z0-9]+)*[a-zA-Z0-9]+\.[a-zA-Z]{2,}(\.[a-zA-Z]{2,3})?$"
               />
-              <div></div>
+              <div class="status"></div>
               <div></div>
             </div>
             <div class="password">
@@ -121,9 +121,9 @@
                   id="password"
                   name="password"
                   required
-                  pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,15}$"
+                  pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,16}$"
                 />
-                <div></div>
+                <div class="status"></div>
                 <div></div>
               </div>
               <div class="pwd-confirm input-label-div">
@@ -137,12 +137,12 @@
                   name="password-confirm"
                   required
                 />
-                <div></div>
+                <div class="status confirm-password-status"></div>
                 <div></div>
               </div>
             </div>
             <div class="phone-number input-label-div">
-              <label class="input-label" for="phone-number"
+              <label class="input-label number" for="phone-number"
                 >Phone Number <span>(optional)</span></label
               >
               <input
@@ -152,7 +152,7 @@
                 name="phone-number"
                 pattern="^\d{10}$"
               />
-              <div></div>
+              <div class="status"></div>
               <div></div>
             </div>
             <div class="agree-to-terms">

@@ -36,7 +36,7 @@
   --margin-l: 2.25rem; /* 36px */
   --margin-xl: 2.5rem; /* 40px */
   --margin-xxl: 3rem; /* 48px */
-  --margin-xxxl: 3.75rem; /* 60px */
+  --margin-xxxl: 3.25rem; /* 50px */
 
   /* GAP */
   --gap-s: 1rem; /* 16 px */
@@ -47,6 +47,7 @@
   --font-xxs: calc(1rem - 1rem * 0.375); /* 10px */
   --font-xs: calc(1rem - 1rem * 0.25); /* 12px */
   --font-s: calc(1rem - 1rem * 0.125); /* 14px */
+  --font-m: 1.75rem; /* 28px */
   --font-l: 2.5rem; /* 40px */
   --font-xl: 3rem; /* 50px */
 
@@ -175,60 +176,70 @@ button {
   }
 
   .sign-in {
+    font-size: clamp(var(--font-xxs), 3vw, 1rem);
+
     margin-left: auto;
   }
 }
 
+.sign-up-with-gg,
+.sign-up-with-email {
+  font-size: clamp(var(--font-xs), 3vw, 1rem);
+}
+
 /* FORM HEADER */
 .sign-up-container {
+  --margin-bottom: 2.5rem;
+  --margin-title: 2rem;
+
   display: flex;
   flex-direction: column;
 
   margin: auto;
-  width: clamp(400px, 40vw, 500px);
+  width: clamp(250px, 90%, 500px);
 
   & header {
     display: flex;
     flex-direction: column;
-    margin-bottom: clamp(var(--margin-l), 2.27vw, var(--margin-xl));
+    margin-bottom: clamp(var(--margin-xl), 6vw, var(--margin-bottom));
     text-align: center;
 
     .form-title {
-      font-size: clamp(var(--font-l), 3.5vw, var(--font-xl));
-      margin-bottom: clamp(var(--margin-m), 1.8vw, 2rem);
+      font-size: clamp(var(--font-m), 5.5vw, var(--font-l));
+      margin-bottom: clamp(var(--margin-m), 4vw, var(--margin-title));
     }
+  }
 
-    .sign-up-with-gg {
-      background-color: inherit;
-      border: 1px solid var(--clr-stroke);
-      box-shadow: 0 10px 30px var(--clr-shadow-1);
-      margin-bottom: clamp(var(--margin-l), 2.27vw, var(--margin-xl));
+  .sign-up-with-gg {
+    background-color: inherit;
+    border: 1px solid var(--clr-stroke);
+    box-shadow: 0 10px 30px var(--clr-shadow-1);
+    margin-bottom: clamp(var(--margin-m), 4vw, var(--margin-title));
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: var(--gap-s);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--gap-s);
 
-      &:focus {
-        outline-color: var(--clr-secondary);
-      }
+    &:focus {
+      outline-color: var(--clr-secondary);
     }
+  }
+}
 
-    .sign-up-with-email {
-      color: var(--clr-secondary);
+.sign-up-with-email {
+  color: var(--clr-secondary);
 
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-      padding: var(--padding-top-bottom) 0;
+  padding: var(--padding-top-bottom) 0;
 
-      .line {
-        height: 0;
-        border: 0.5px solid var(--clr-secondary);
-        width: calc((clamp(400px, 40vw, 500px) / 2) - 5.625rem);
-      }
-    }
+  .line {
+    height: 0;
+    border: 0.5px solid var(--clr-secondary);
+    width: calc((clamp(250px, 90%, 500px) / 2) - 5rem);
   }
 }
 
@@ -248,8 +259,8 @@ button {
   .name,
   .password {
     display: flex;
-    justify-content: space-around;
     gap: var(--gap-s);
+    justify-content: space-between;
   }
 
   .input-label-div {
@@ -262,7 +273,7 @@ button {
     color: var(--clr-primary-1);
 
     &:focus {
-      outline-color: blue;
+      outline-color: blue; /* CHANGE IT */
     }
   }
 }
@@ -286,9 +297,8 @@ button {
   transition: outline 200ms ease;
 
   & + div::before {
-    border-radius: 5px;
+    border-radius: calc(0.625rem / 2);
     content: '';
-    display: none;
     height: 0.625rem;
     width: 0.625rem;
     position: absolute;
@@ -309,8 +319,26 @@ button {
       background-color: var(--clr-bg-input-focused);
 
       /* AND INVALID */
+      &:invalid {
+        &[type='email'] + .status::after {
+          content: 'Please enter a valid email address';
+        }
+
+        &[name='password'] + .status::after {
+          content: '❗️ Minimum 8 characters: 1 uppercase, 1 lowercase, 1 number';
+        }
+
+        &[type='tel'] + .status::after {
+          content: 'Please enter a valid phone number';
+        }
+      }
+
+      &#password-confirm.isInvalid + .confirm-password-status::after {
+        content: "Passwords don't match";
+      }
+
       &:invalid,
-      &#password-confirm.isNotValid {
+      &#password-confirm.isInvalid {
         outline: 1px solid var(--clr-wrong-input);
 
         & + div::before {
@@ -338,6 +366,28 @@ button {
       }
     }
   }
+
+  & + .status::after {
+    color: var(--clr-wrong-input);
+    content: '';
+    font-size: clamp(var(--font-xxs), 2vw, var(--font-xs));
+    position: absolute;
+    top: 3.25rem;
+    left: 0.625rem;
+  }
+
+  &[name='password'] {
+    & + .status::after {
+      font-size: clamp(0.5rem, 2vw, var(--font-xs));
+      left: 0;
+      width: calc(clamp(250px, 75vw, 500px) - 0.625rem * 2);
+    }
+
+    &:is(:focus, :active) + .status::after {
+      content: '⚠️ Minimum 8 characters: 1 uppercase, 1 lowercase, 1 number';
+      color: var(--clr-secondary);
+    }
+  }
 }
 
 .active {
@@ -356,21 +406,7 @@ button {
   align-items: center;
 
   height: 24px;
-  /* margin-bottom: var(--margin-m); */
   position: relative;
-
-  & div {
-    background-color: var(--clr-primary-2);
-    border-radius: calc(var(--checkbox-size) / 2 / 10);
-    height: calc(var(--checkbox-size) / 2);
-    position: absolute;
-    top: 7px;
-    left: calc(var(--checkbox-size) / 4);
-    transform: scale(0);
-    transition: transform 200ms cubic-bezier(0.53, -0.56, 0.15, 2.5);
-    width: calc(var(--checkbox-size) / 2);
-    z-index: -1;
-  }
 
   & input {
     appearance: none;
@@ -388,15 +424,34 @@ button {
       outline-color: var(--clr-secondary);
     }
   }
+
+  & > div {
+    background-color: var(--clr-primary-2);
+    border-radius: calc(var(--checkbox-size) / 2 / 10);
+    height: calc(var(--checkbox-size) / 2);
+    position: absolute;
+    top: 7px;
+    left: calc(var(--checkbox-size) / 4);
+    transform: scale(0);
+    transition: transform 200ms cubic-bezier(0.53, -0.56, 0.15, 2.5);
+    width: calc(var(--checkbox-size) / 2);
+    z-index: -1;
+  }
 }
 
 @media only screen and (max-width: 1200px) {
+  .sign-up-form {
+    & > div:nth-child(-n + 3) {
+      margin-bottom: var(--margin-xxxl);
+    }
+  }
+
   .input-label span {
     display: none;
   }
 
-  .input-label-div {
-    & div:last-of-type::after {
+  .input {
+    & ~ div:last-of-type::after {
       background-color: var(--clr-primary-2);
       border-radius: calc((min(calc(1rem * 0.8125), 2vw) * 2 + 15px) / 10);
       color: var(--clr-primary-1);
@@ -408,7 +463,7 @@ button {
       top: -1.75rem;
     }
 
-    &.phone-number div:last-of-type::after {
+    &[type='tel'] ~ div:last-of-type::after {
       content: 'optional';
     }
   }
@@ -429,25 +484,10 @@ button {
   }
 
   .sign-up-container {
+    --margin-bottom: 3.75rem; /* 60px */
+    --margin-title: 2.25rem; /* 36px */
+
     margin: 8rem auto;
-    width: clamp(400px, 55vw, 550px);
-
-    & header {
-      margin-bottom: clamp(var(--margin-l), 6vw, var(--margin-xxxl));
-
-      .form-title {
-        font-size: clamp(var(--font-l), 5.5vw, var(--font-xl));
-        margin-bottom: clamp(var(--margin-m), 3.8vw, var(--margin-l));
-      }
-
-      .sign-up-with-gg {
-        margin-bottom: clamp(var(--margin-s), 3.4vw, var(--margin-l));
-      }
-
-      .sign-up-with-email .line {
-        width: calc(clamp(400px, 55vw, 550px) / 2 - 5.625rem);
-      }
-    }
   }
 }
 
@@ -456,7 +496,22 @@ button {
     .name,
     .password {
       flex-direction: column;
-      gap: var(--margin-xxl);
+      gap: var(--margin-xxxl);
     }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .form-wrapper {
+    padding: var(--pd-l) var(--pd-m) 0;
+  }
+
+  .social-media-accounts img {
+    height: clamp(15px, 6vw, 30px);
+    width: clamp(15px, 6vw, 30px);
+  }
+
+  .sign-up-with-email .line {
+    width: calc((clamp(250px, 90%, 500px) / 2) - 4rem);
   }
 }
