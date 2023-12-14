@@ -204,7 +204,6 @@ button {
 /* FORM HEADER */
 .sign-up-container {
   --margin-bottom: 2.5rem;
-  --margin-title: 2rem;
 
   display: flex;
   flex-direction: column;
@@ -215,17 +214,19 @@ button {
   & header {
     display: flex;
     flex-direction: column;
-    margin-bottom: clamp(var(--margin-xl), 6vw, var(--margin-bottom));
+    margin-bottom: clamp(var(--margin-xl), 2.72vw, var(--margin-xxl));
     text-align: center;
   }
 
   .form-title {
     font-size: clamp(var(--font-m), 2.27vw, var(--font-l));
-    margin-bottom: clamp(var(--margin-m), 1.8vw, var(--margin-title));
+    line-height: calc(1ex / 0.32);
+    margin-bottom: clamp(var(--margin-l), 2.27vw, var(--margin-bottom));
 
     & span {
       color: var(--clr-primary-1);
       display: inline-block;
+      letter-spacing: calc(0.15ex);
       padding: 0 1rem;
       position: relative;
 
@@ -247,7 +248,7 @@ button {
     background-color: inherit;
     border: 1px solid var(--clr-stroke);
     box-shadow: 0 10px 30px var(--clr-shadow-1);
-    margin-bottom: clamp(var(--margin-m), 4vw, var(--margin-title));
+    margin-bottom: clamp(var(--margin-l), 2.27vw, var(--margin-bottom));
 
     display: flex;
     align-items: center;
@@ -530,14 +531,7 @@ button {
   }
 
   .sign-up-container {
-    --margin-bottom: 3.75rem; /* 60px */
-    --margin-title: 2.25rem; /* 36px */
-
     margin: 8rem auto;
-
-    .form-title {
-      font-size: clamp(var(--font-m), 4.2vw, var(--font-l));
-    }
   }
 }
 
