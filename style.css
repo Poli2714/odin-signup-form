@@ -47,7 +47,7 @@
   --font-xxs: calc(1rem - 1rem * 0.375); /* 10px */
   --font-xs: calc(1rem - 1rem * 0.25); /* 12px */
   --font-s: calc(1rem - 1rem * 0.125); /* 14px */
-  --font-m: 1.75rem; /* 28px */
+  --font-m: 2rem; /* 32px */
   --font-l: 2.5rem; /* 40px */
   --font-xl: 3rem; /* 50px */
 
@@ -182,11 +182,6 @@ button {
   }
 }
 
-.sign-up-with-gg,
-.sign-up-with-email {
-  font-size: clamp(var(--font-xs), 3vw, 1rem);
-}
-
 /* FORM HEADER */
 .sign-up-container {
   --margin-bottom: 2.5rem;
@@ -203,10 +198,29 @@ button {
     flex-direction: column;
     margin-bottom: clamp(var(--margin-xl), 6vw, var(--margin-bottom));
     text-align: center;
+  }
 
-    .form-title {
-      font-size: clamp(var(--font-m), 5.5vw, var(--font-l));
-      margin-bottom: clamp(var(--margin-m), 4vw, var(--margin-title));
+  .form-title {
+    font-size: clamp(var(--font-m), 2.27vw, var(--font-l));
+    margin-bottom: clamp(var(--margin-m), 1.8vw, var(--margin-title));
+
+    & span {
+      color: var(--clr-primary-1);
+      display: inline-block;
+      padding: 0 1rem;
+      position: relative;
+
+      & span {
+        background-color: var(--clr-primary-2);
+        height: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        transform: skewX(-15deg);
+        width: 100%;
+        z-index: -1;
+      }
     }
   }
 
@@ -225,6 +239,11 @@ button {
       outline-color: var(--clr-secondary);
     }
   }
+}
+
+.sign-up-with-gg,
+.sign-up-with-email {
+  font-size: clamp(var(--font-xs), 3vw, 1rem);
 }
 
 .sign-up-with-email {
@@ -493,6 +512,10 @@ button {
     --margin-title: 2.25rem; /* 36px */
 
     margin: 8rem auto;
+
+    .form-title {
+      font-size: clamp(var(--font-m), 4.2vw, var(--font-l));
+    }
   }
 }
 
