@@ -37,6 +37,10 @@ form.addEventListener('keyup', function (e) {
   if (!target.classList.contains('input')) return;
 
   target.attributes.value.value = target.value;
+
+  areAllInputsValid(allInputs) && passwordConfirm.classList.contains('isValid')
+    ? createAccBtn.classList.add('can-submit')
+    : createAccBtn.classList.remove('can-submit');
 });
 
 form.addEventListener('focusin', function (e) {
