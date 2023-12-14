@@ -482,6 +482,13 @@ button {
   }
 }
 
+.attribution {
+  font-size: var(--font-s);
+  padding: 0.25rem 0;
+  text-align: center;
+  width: 100%;
+}
+
 @media only screen and (max-width: 1200px) {
   .sign-up-form {
     & > div:nth-child(-n + 3) {
