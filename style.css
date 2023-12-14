@@ -219,7 +219,7 @@ button {
   }
 
   .form-title {
-    font-size: clamp(var(--font-m), 2.27vw, var(--font-l));
+    font-size: clamp(var(--font-m), 3vw, var(--font-l));
     line-height: calc(1ex / 0.32);
     margin-bottom: clamp(var(--margin-l), 2.27vw, var(--margin-bottom));
 
@@ -532,6 +532,10 @@ button {
 
   .sign-up-container {
     margin: 8rem auto;
+
+    .form-title {
+      font-size: clamp(var(--font-m), 4.2vw, var(--font-l));
+    }
   }
 }
 
