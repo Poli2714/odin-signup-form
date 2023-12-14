@@ -276,6 +276,10 @@ button {
       outline-color: blue; /* CHANGE IT */
     }
   }
+
+  .can-submit {
+    background-color: var(--clr-correct-input);
+  }
 }
 
 .input-label {

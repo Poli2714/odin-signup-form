@@ -2,12 +2,12 @@
 
 const form = document.querySelector('.sign-up-form');
 const inputLabels = document.querySelectorAll('.input-label');
-const inputs = document.querySelectorAll('.input');
+const textInputs = document.querySelectorAll('.input');
+const allInputs = document.getElementsByTagName('input');
 const password = document.querySelector('#password');
 const passwordConfirm = document.querySelector('#password-confirm');
-const phoneNumber = document.querySelector('#phone-number');
-const passwordStatus = document.querySelector('.password-status');
-const phoneLabel = document.querySelector('.number');
+const checkbox = document.querySelector('input[type="checkbox"]');
+const createAccBtn = document.querySelector('.create-account');
 
 const confirmPassword = function (pwd, confirmPwd) {
   confirmPwd.classList.remove('isInvalid');
@@ -20,7 +20,14 @@ const confirmPassword = function (pwd, confirmPwd) {
   );
 };
 
-inputs.forEach(input => {
+const areAllInputsValid = function (inputs) {
+  for (const input of inputs) {
+    if (!input.validity.valid) return false;
+  }
+  return true;
+};
+
+textInputs.forEach(input => {
   input.setAttribute('value', input.value);
 });
 
@@ -33,7 +40,7 @@ form.addEventListener('keyup', function (e) {
 
 form.addEventListener('focusin', function (e) {
   const target = e.target;
-  if (!target.classList.contains('input')) return;
+  if (target.localName !== 'input') return;
 
   inputLabels.forEach(label => {
     if (target.id === label.attributes.for.value) label.classList.add('active');
@@ -42,9 +49,9 @@ form.addEventListener('focusin', function (e) {
 
 form.addEventListener('focusout', function (e) {
   const target = e.target;
-  if (!target.classList.contains('input')) return;
+  if (target.localName !== 'input') return;
 
-  inputs.forEach(input => {
+  textInputs.forEach(input => {
     if (!input.value) {
       inputLabels.forEach(label => {
         if (input.id === label.attributes.for.value) {
@@ -54,9 +61,17 @@ form.addEventListener('focusout', function (e) {
     }
   });
 
-  // CONFIRM PASSWORD WHEN FOCUS OUT
-  if (target.type !== 'password') return;
-  confirmPassword(password, passwordConfirm);
+  if (target.type == 'password') confirmPassword(password, passwordConfirm);
+
+  areAllInputsValid(allInputs) && passwordConfirm.classList.contains('isValid')
+    ? createAccBtn.classList.add('can-submit')
+    : createAccBtn.classList.remove('can-submit');
+});
+
+checkbox.addEventListener('change', function () {
+  areAllInputsValid(allInputs) && passwordConfirm.classList.contains('isValid')
+    ? createAccBtn.classList.add('can-submit')
+    : createAccBtn.classList.remove('can-submit');
 });
 
 // ON SUBMIT BUTTON - CONFIRM PASSWORD SHOULD HAVE ISVALID CLASS!!!
