@@ -309,10 +309,6 @@ button {
     background-color: var(--clr-primary-2);
     box-shadow: 0 10px 30px var(--clr-shadow-2);
     color: var(--clr-primary-1);
-
-    &:focus {
-      outline-color: blue; /* CHANGE IT */
-    }
   }
 
   .can-submit {
