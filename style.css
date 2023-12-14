@@ -278,6 +278,7 @@ button {
   }
 
   .can-submit {
+    --clr-shadow-2: hsla(158, 100%, 33%, 0.3);
     background-color: var(--clr-correct-input);
   }
 }

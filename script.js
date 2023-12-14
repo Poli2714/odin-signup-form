@@ -38,7 +38,7 @@ form.addEventListener('keyup', function (e) {
 
   target.attributes.value.value = target.value;
 
-  areAllInputsValid(allInputs) && passwordConfirm.classList.contains('isValid')
+  areAllInputsValid(allInputs) && passwordConfirm.value === password.value
     ? createAccBtn.classList.add('can-submit')
     : createAccBtn.classList.remove('can-submit');
 });
