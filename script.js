@@ -14,6 +14,7 @@ const confirmPassword = function (pwd, confirmPwd) {
   confirmPwd.classList.remove('isValid');
 
   if (!pwd.validity.valid) return;
+  passwordConfirm.setCustomValidity('');
 
   confirmPwd.classList.add(
     `${pwd.value === confirmPwd.value ? 'isValid' : 'isInvalid'}`
@@ -45,6 +46,12 @@ form.addEventListener('focusin', function (e) {
   inputLabels.forEach(label => {
     if (target.id === label.attributes.for.value) label.classList.add('active');
   });
+
+  if (
+    target.name === 'password' &&
+    passwordConfirm.classList.contains('isInvalid')
+  )
+    passwordConfirm.classList.remove('isInvalid');
 });
 
 form.addEventListener('focusout', function (e) {
@@ -68,10 +75,21 @@ form.addEventListener('focusout', function (e) {
     : createAccBtn.classList.remove('can-submit');
 });
 
-checkbox.addEventListener('change', function () {
+checkbox.addEventListener('change', () => {
   areAllInputsValid(allInputs) && passwordConfirm.classList.contains('isValid')
     ? createAccBtn.classList.add('can-submit')
     : createAccBtn.classList.remove('can-submit');
 });
 
-// ON SUBMIT BUTTON - CONFIRM PASSWORD SHOULD HAVE ISVALID CLASS!!!
+createAccBtn.addEventListener('click', function (e) {
+  passwordConfirm.setCustomValidity('');
+  if (passwordConfirm.classList.contains('isValid')) return;
+
+  passwordConfirm.setCustomValidity(
+    `${
+      !passwordConfirm.value
+        ? 'Please fill out this field'
+        : 'Please match the entered password'
+    }`
+  );
+});
