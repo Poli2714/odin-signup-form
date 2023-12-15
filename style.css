@@ -210,7 +210,7 @@ button {
   }
 
   .form-title {
-    --font-title-min: 2rem; /* 32px */
+    --font-title-min: 1.5rem; /* 24px */
     --font-title-max: 2.5rem; /* 40px */
 
     font-size: clamp(var(--font-title-min), 3vw, var(--font-title-max));
