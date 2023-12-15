@@ -350,64 +350,16 @@ button {
   }
 
   &:focus,
-  &:active {
+  &:active,
+  &:hover,
+  &#password-confirm:hover {
     background-color: var(--clr-bg-input-focused);
     outline: solid 1.5px var(--clr-secondary);
   }
 
-  /* NOT FOCUSED */
-  &:not(:focus, :active) {
-    /* AND NOT EMPTY */
-    &:not([value='']) {
-      background-color: var(--clr-bg-input-focused);
-
-      /* AND INVALID */
-      &:invalid {
-        &[type='email'] + .status::after {
-          content: 'Please enter a valid email address';
-        }
-
-        &[name='password'] + .status::after {
-          content: '❗️ Minimum 8 characters: 1 uppercase, 1 lowercase, 1 number';
-        }
-
-        &[type='tel'] + .status::after {
-          content: 'Please enter a valid phone number';
-        }
-      }
-
-      &#password-confirm.isInvalid + .confirm-password-status::after {
-        content: "Passwords don't match";
-      }
-
-      &:invalid,
-      &#password-confirm.isInvalid {
-        outline: 1px solid var(--clr-wrong-input);
-
-        & + div::before {
-          background-color: var(--clr-wrong-input);
-          display: block;
-        }
-      }
-
-      /* AND VALID */
-      &:valid {
-        &:not([type='tel'], [name='password-confirm']),
-        &#password-confirm.isValid {
-          outline: 1px solid var(--clr-correct-input);
-
-          & + div::before {
-            display: block;
-            background-color: var(--clr-correct-input);
-          }
-        }
-
-        &[type='tel'],
-        &[name='password-confirm'] {
-          outline: 1px solid var(--clr-stroke);
-        }
-      }
-    }
+  &:hover,
+  &#password-confirm:hover {
+    outline-width: 2px;
   }
 
   & + .status::after {
@@ -431,12 +383,76 @@ button {
       color: var(--clr-secondary);
     }
   }
+
+  &[type='tel']:is(:focus, :active) + .status::after {
+    content: '⚠️ Valid format: 123-456-7890';
+    color: var(--clr-secondary);
+  }
+}
+
+/* NOT FOCUSED */
+.input:not(:focus, :active, [value='']) {
+  background-color: var(--clr-bg-input-focused);
+  /* AND INVALID */
+  &:invalid {
+    &[type='email'] + .status::after {
+      content: 'Please enter a valid email address';
+    }
+
+    &[name='password'] + .status::after {
+      content: '❗️ Minimum 8 characters: 1 uppercase, 1 lowercase, 1 number';
+    }
+
+    &[type='tel'] + .status::after {
+      content: 'Please enter a valid phone number';
+    }
+  }
+
+  &:invalid,
+  &#password-confirm.isInvalid {
+    outline: 1px solid var(--clr-wrong-input);
+
+    & + div::before {
+      background-color: var(--clr-wrong-input);
+      display: block;
+    }
+
+    &:hover {
+      outline-width: 2px;
+    }
+  }
+
+  &#password-confirm.isInvalid + .confirm-password-status::after {
+    content: "Passwords don't match";
+  }
+
+  /* AND VALID */
+  &:valid {
+    &:not([type='tel'], [name='password-confirm']),
+    &#password-confirm.isValid {
+      outline: 1px solid var(--clr-correct-input);
+
+      & + div::before {
+        display: block;
+        background-color: var(--clr-correct-input);
+      }
+
+      &:hover {
+        outline-width: 2px;
+      }
+    }
+
+    &[type='tel'],
+    &[name='password-confirm'] {
+      outline: 1px solid var(--clr-stroke);
+    }
+  }
 }
 
 .active {
   color: var(--clr-secondary);
   font-size: var(--font-small);
-  transform: translate(max(calc(-1rem * 0.8125), -2vw), -2.5rem);
+  transform: translate(-1rem, -2.25rem);
 
   & span {
     font-size: var(--font-smaller);
@@ -458,8 +474,13 @@ button {
     border: 1px solid var(--clr-stroke);
     border-radius: calc(var(--checkbox-size) / 10);
     height: var(--checkbox-size);
-    width: var(--checkbox-size);
     margin-right: var(--margin-checkbox);
+    transition: outline 150ms ease;
+    width: var(--checkbox-size);
+
+    &:hover {
+      outline: solid 1.5px var(--clr-secondary);
+    }
 
     &:checked + div {
       transform: scale(1);
