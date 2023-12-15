@@ -11,49 +11,28 @@
   --clr-primary-1: hsl(40, 100%, 97%);
   --clr-primary-2: hsl(70, 5%, 22%);
   --clr-secondary: hsla(70, 5%, 22%, 0.5);
-  --clr-bg-input: hsla(60, 10%, 92%, 0.5);
-  --clr-bg-input-focused: hsla(60, 10%, 92%, 0.25);
-  --clr-correct-input: hsl(158, 100%, 33%);
-  --clr-wrong-input: hsl(350, 74%, 45%);
-  --clr-link: hsl(240, 100%, 50%);
-  --clr-link-active: hsl(266, 100%, 50%);
-  --clr-stroke: hsl(229, 28%, 88%);
-  --clr-shadow-1: hsla(229, 28%, 88%, 0.3);
-  --clr-shadow-2: hsla(70, 5%, 22%, 0.3);
+  --clr-shadow: hsla(70, 5%, 22%, 0.3);
 
   /* PADDING */
-  --padding-top-bottom: 0.8125rem; /* 13px */
-  --padding-left-right: 1.625rem; /* 26px */
-  --pd-s: 1rem;
-  --pd-m: 1.5rem;
-  --pd-l: 2.25rem;
-  --pd-xl: 2.5rem;
+  --padding-vertical: 0.8125rem; /* 13px */
+  --padding-horizontal: 1.625rem; /* 26px */
 
   /* MARGIN */
-  --margin-xs: 0.5rem; /* 8px */
-  --margin-s: 0.75rem; /* 12px */
-  --margin-m: 1.5rem; /* 24px */
-  --margin-l: 2.25rem; /* 36px */
-  --margin-xl: 2.5rem; /* 40px */
-  --margin-xxl: 3rem; /* 48px */
-  --margin-xxxl: 3.25rem; /* 50px */
+  --margin-s: 2.25rem; /* 36px */
+  --margin-m: 2.5rem; /* 40px */
+  --margin-l: 3rem; /* 48px */
+  --margin-xl: 3.25rem; /* 50px */
 
   /* GAP */
-  --gap-s: 1rem; /* 16 px */
-  --gap-m: 1.5rem; /* 24px */
-  --gap-l: calc(1rem + 1rem * 1.875); /* 46px */
+  --gap: 1rem; /* 16 px */
 
   /* FONT SIZES */
-  --font-xxs: calc(1rem - 1rem * 0.375); /* 10px */
-  --font-xs: calc(1rem - 1rem * 0.25); /* 12px */
-  --font-s: calc(1rem - 1rem * 0.125); /* 14px */
-  --font-m: 2rem; /* 32px */
-  --font-l: 2.5rem; /* 40px */
-  --font-xl: 3rem; /* 50px */
+  --font-smaller: 0.625rem; /* 10px */
+  --font-small: 0.75rem; /* 12px */
 
   /* OTHER SIZES */
-  --border-radius: 5px;
-  --checkbox-size: 1.25rem; /* 20 */
+  --border-radius: 0.3125rem; /* 5px */
+  --checkbox-size: 1.25rem; /* 20px */
 }
 
 * {
@@ -80,11 +59,13 @@ input:not([type='checkbox']) {
   display: block;
   font-family: inherit;
   font-size: 100%;
-  padding: var(--padding-top-bottom) var(--padding-left-right);
+  padding: var(--padding-vertical) var(--padding-horizontal);
   width: 100%;
 }
 
 input {
+  --clr-bg-input: hsla(60, 10%, 92%, 0.5);
+
   background-color: var(--clr-bg-input);
   border: none;
 
@@ -96,6 +77,8 @@ input {
 }
 
 a {
+  --clr-link: hsl(240, 100%, 50%);
+  --clr-link-active: hsl(266, 100%, 50%);
   --font-weight: 600;
   --font-opsz: 50;
 
@@ -153,9 +136,9 @@ button {
   }
 
   & figcaption {
-    background-color: hsla(70, 5%, 22%, 0.3);
+    background-color: var(--clr-shadow);
     color: var(--clr-primary-1);
-    font-size: clamp(var(--font-xxs), 0.7vw, var(--font-xs));
+    font-size: clamp(var(--font-smaller), 0.7vw, var(--font-small));
     padding: 0.5rem 1rem;
     position: absolute;
     bottom: 0;
@@ -172,17 +155,24 @@ button {
 }
 
 .form-wrapper {
+  --pd-form-horizontal: 2.25rem;
+  --pd-form-vertical: 2.5rem;
+
   display: flex;
   flex-direction: column;
-  padding: var(--pd-xl) var(--pd-l) 0;
+  padding: var(--pd-form-vertical) var(--pd-form-horizontal) 0;
   width: 50%;
 }
 
 .primary-nav {
+  --margin-nav: 0.5rem; /* 8px */
+
   display: flex;
 
   .social-media-accounts img {
+    height: clamp(15px, 6vw, 30px);
     transition: transform 300ms ease;
+    width: clamp(15px, 6vw, 30px);
 
     &:hover {
       cursor: pointer;
@@ -190,12 +180,12 @@ button {
     }
 
     &:not(:last-child) {
-      margin-right: var(--margin-xs);
+      margin-right: var(--margin-nav);
     }
   }
 
   .sign-in {
-    font-size: clamp(var(--font-xxs), 3vw, 1rem);
+    font-size: clamp(var(--font-smaller), 3vw, 1rem);
 
     margin-left: auto;
   }
@@ -203,6 +193,7 @@ button {
 
 /* FORM HEADER */
 .sign-up-container {
+  --clr-stroke: hsl(229, 28%, 88%);
   --margin-bottom: 2.5rem;
 
   display: flex;
@@ -214,14 +205,17 @@ button {
   & header {
     display: flex;
     flex-direction: column;
-    margin-bottom: clamp(var(--margin-xl), 2.72vw, var(--margin-xxl));
+    margin-bottom: clamp(var(--margin-m), 2.72vw, var(--margin-l));
     text-align: center;
   }
 
   .form-title {
-    font-size: clamp(var(--font-m), 3vw, var(--font-l));
+    --font-title-min: 2rem; /* 32px */
+    --font-title-max: 2.5rem; /* 40px */
+
+    font-size: clamp(var(--font-title-min), 3vw, var(--font-title-max));
     line-height: calc(1ex / 0.32);
-    margin-bottom: clamp(var(--margin-l), 2.27vw, var(--margin-bottom));
+    margin-bottom: clamp(var(--margin-s), 2.27vw, var(--margin-bottom));
 
     & span {
       color: var(--clr-primary-1);
@@ -245,15 +239,17 @@ button {
   }
 
   .sign-up-with-gg {
+    --clr-shadow-2: hsla(229, 28%, 88%, 0.3);
+
     background-color: inherit;
     border: 1px solid var(--clr-stroke);
-    box-shadow: 0 10px 30px var(--clr-shadow-1);
-    margin-bottom: clamp(var(--margin-l), 2.27vw, var(--margin-bottom));
+    box-shadow: 0 10px 30px var(--clr-shadow-2);
+    margin-bottom: clamp(var(--margin-s), 2.27vw, var(--margin-bottom));
 
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: var(--gap-s);
+    gap: var(--gap);
 
     &:focus {
       outline-color: var(--clr-secondary);
@@ -263,7 +259,7 @@ button {
 
 .sign-up-with-gg,
 .sign-up-with-email {
-  font-size: clamp(var(--font-xs), 3vw, 1rem);
+  font-size: clamp(var(--font-small), 3vw, 1rem);
 }
 
 .sign-up-with-email {
@@ -273,7 +269,7 @@ button {
   align-items: center;
   justify-content: space-between;
 
-  padding: var(--padding-top-bottom) 0;
+  padding: var(--padding-vertical) 0;
 
   .line {
     height: 0;
@@ -284,21 +280,24 @@ button {
 
 /* ACTUAL FORM */
 .sign-up-form {
+  --clr-correct-input: hsl(158, 100%, 33%);
+  --clr-wrong-input: hsl(350, 74%, 45%);
+
   display: flex;
   flex-direction: column;
 
   & > div:nth-child(-n + 3) {
-    margin-bottom: var(--margin-xxl);
+    margin-bottom: var(--margin-l);
   }
 
   & > div:nth-child(n + 4) {
-    margin-bottom: var(--margin-l);
+    margin-bottom: var(--margin-s);
   }
 
   .name,
   .password {
     display: flex;
-    gap: var(--gap-s);
+    gap: var(--gap);
     justify-content: space-between;
   }
 
@@ -308,31 +307,35 @@ button {
 
   .create-account {
     background-color: var(--clr-primary-2);
-    box-shadow: 0 10px 30px var(--clr-shadow-2);
+    box-shadow: 0 10px 30px var(--clr-shadow);
     color: var(--clr-primary-1);
   }
 
   .can-submit {
-    --clr-shadow-2: hsla(158, 100%, 33%, 0.3);
+    --clr-shadow: hsla(158, 100%, 33%, 0.3);
     background-color: var(--clr-correct-input);
   }
 }
 
 .input-label {
+  --font-label: 0.875rem; /* 14px */
+
   color: var(--clr-primary-2);
-  font-size: var(--font-s);
+  font-size: var(--font-label);
   position: absolute;
-  left: var(--padding-left-right);
-  top: var(--padding-top-bottom);
+  left: var(--padding-horizontal);
+  top: var(--padding-vertical);
   transition: all 300ms ease;
   z-index: -1;
 
   & span {
-    font-size: var(--font-xs);
+    font-size: var(--font-small);
   }
 }
 
 .input {
+  --clr-bg-input-focused: hsla(60, 10%, 92%, 0.25);
+
   color: hsla(70, 5%, 22%, 0.75);
   transition: outline 200ms ease;
 
@@ -410,7 +413,7 @@ button {
   & + .status::after {
     color: var(--clr-wrong-input);
     content: '';
-    font-size: clamp(var(--font-xxs), 2vw, var(--font-xs));
+    font-size: clamp(var(--font-smaller), 2vw, var(--font-small));
     position: absolute;
     top: 3.25rem;
     left: 0.625rem;
@@ -418,7 +421,7 @@ button {
 
   &[name='password'] {
     & + .status::after {
-      font-size: clamp(0.5rem, 2vw, var(--font-xs));
+      font-size: clamp(0.5rem, 2vw, var(--font-small));
       left: 0;
       width: calc(clamp(250px, 75vw, 500px) - 0.625rem * 2);
     }
@@ -432,11 +435,11 @@ button {
 
 .active {
   color: var(--clr-secondary);
-  font-size: var(--font-xs);
+  font-size: var(--font-small);
   transform: translate(max(calc(-1rem * 0.8125), -2vw), -2.5rem);
 
   & span {
-    font-size: var(--font-xxs);
+    font-size: var(--font-smaller);
   }
 }
 
@@ -449,12 +452,14 @@ button {
   position: relative;
 
   & input {
+    --margin-checkbox: 0.75rem; /* 12px */
+
     appearance: none;
     border: 1px solid var(--clr-stroke);
     border-radius: calc(var(--checkbox-size) / 10);
     height: var(--checkbox-size);
     width: var(--checkbox-size);
-    margin-right: var(--margin-s);
+    margin-right: var(--margin-checkbox);
 
     &:checked + div {
       transform: scale(1);
@@ -480,7 +485,7 @@ button {
 }
 
 .attribution {
-  font-size: var(--font-s);
+  font-size: 0.875rem;
   padding: 0.25rem 0;
   text-align: center;
   width: 100%;
@@ -489,7 +494,7 @@ button {
 @media only screen and (max-width: 1200px) {
   .sign-up-form {
     & > div:nth-child(-n + 3) {
-      margin-bottom: var(--margin-xxxl);
+      margin-bottom: var(--margin-xl);
     }
   }
 
@@ -503,7 +508,7 @@ button {
       border-radius: calc((min(calc(1rem * 0.8125), 2vw) * 2 + 15px) / 10);
       color: var(--clr-primary-1);
       content: 'required';
-      font-size: var(--font-xxs);
+      font-size: var(--font-smaller);
       padding: 0.5ex 1ex;
       position: absolute;
       right: calc(min(calc(1rem * 0.8125), 2vw) / 2);
@@ -534,7 +539,7 @@ button {
     margin: 8rem auto;
 
     .form-title {
-      font-size: clamp(var(--font-m), 4.2vw, var(--font-l));
+      font-size: clamp(var(--font-title-min), 4.2vw, var(--font-title-max));
     }
   }
 }
@@ -544,19 +549,15 @@ button {
     .name,
     .password {
       flex-direction: column;
-      gap: var(--margin-xxxl);
+      gap: var(--margin-xl);
     }
   }
 }
 
 @media only screen and (max-width: 500px) {
   .form-wrapper {
-    padding: var(--pd-l) var(--pd-m) 0;
-  }
-
-  .social-media-accounts img {
-    height: clamp(15px, 6vw, 30px);
-    width: clamp(15px, 6vw, 30px);
+    --pd-form-horizontal: 1.5rem;
+    --pd-form-vertical: 2.25rem;
   }
 
   .sign-up-with-email .line {
